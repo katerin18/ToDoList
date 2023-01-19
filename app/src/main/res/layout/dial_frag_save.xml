@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="@drawable/custom_circle_frame">
+
+    <TextView
+        android:id="@+id/txtSaveIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:text="@string/txtbtnSave"
+        android:textAppearance="?android:attr/textAppearanceLarge">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/yellow"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="@string/btnYes">
+        </Button>
+
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/black"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:text="@string/btnCancel">
+        </Button>
+    </LinearLayout>
+
+
+</LinearLayout>

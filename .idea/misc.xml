@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/card_plan.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/circle_frame.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/close_activity.xml" value="0.1695" />
+        <entry key="app/src/main/res/drawable/custom_circle_frame.xml" value="0.15748748779296876" />
+        <entry key="app/src/main/res/drawable/custom_frame.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/custom_input.xml" value="0.16512451171875" />
+        <entry key="app/src/main/res/drawable/green_choice.xml" value="0.1695" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1695" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2385" />
+        <entry key="app/src/main/res/drawable/icon_background.xml" value="0.1845" />
+        <entry key="app/src/main/res/drawable/red_choice.xml" value="0.13" />
+        <entry key="app/src/main/res/drawable/test.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/yel_choice.xml" value="0.13" />
+        <entry key="app/src/main/res/layout-v31/dial_frag_delete.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_plan_card_ui.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/card_plan.xml" value="0.6394875229864043" />
+        <entry key="app/src/main/res/layout/dial_calendar.xml" value="0.25176951090494787" />
+        <entry key="app/src/main/res/layout/dial_frag_delete.xml" value="0.2953231811523438" />
+        <entry key="app/src/main/res/layout/dial_frag_save.xml" value="0.30704091389973964" />
+        <entry key="app/src/main/res/layout/item_plan.xml" value="0.2667221069335939" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

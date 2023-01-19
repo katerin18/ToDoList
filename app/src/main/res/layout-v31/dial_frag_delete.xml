@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="@drawable/custom_circle_frame"
+    android:clipToOutline="true"
+    >
+
+    <TextView
+        android:id="@+id/txtDelIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textSize="18sp"
+        android:text="@string/txtDel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="@string/btnYes"
+            android:backgroundTint="@color/yellow">
+        </Button>
+
+        <Button
+            android:id="@+id/btnNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="@string/btnNo">
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ToDoList</string>
+
+    <string name="MyPLans">My plans</string>
+    <string name="txtCompleted">Completed -</string>
+    <string name="numCompleted">0</string>
+    <string name="toBuy">To buy something</string>
+    <string name="hintEdit">To do</string>
+    <string name="importancePlan">Importance</string>
+    <string name="txtSave">Save</string>
+    <string name="txtbtnSave">Do u want to save it?</string>
+
+    <string name="chLow">Low</string>
+    <string name="chMed">Medium</string>
+    <string name="chHigh">High</string>
+
+    <string name="txtDeadline">Deadline</string>
+    <string name="txtDate">01.12.22</string>
+
+    <string name="btnDel">Delete</string>
+    <string name="txtDel">Do u want to delete it?</string>
+    <string name="btnYes">Yes</string>
+    <string name="btnNo">No</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="btnSave">Save</string>
+
+
+
+
+</resources>
