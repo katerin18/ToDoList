@@ -1,9 +1,11 @@
 package com.example.todolist.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.ToDoItem
@@ -13,9 +15,11 @@ import com.example.todolist.databinding.ItemPlanBinding
 class toDoAdapter: RecyclerView.Adapter<toDoAdapter.toDoViewHolder>() {
 
     var toDoList = ArrayList<ToDoItem>()
+    private var size_ = 1
 
     class toDoViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val binding = ItemPlanBinding.bind(view)
+        val titlePlan: TextView = view.findViewById(R.id.txtPlan)
         fun bind(toDo: ToDoItem) = with(binding){
             txtPlan.text = toDo.plan
         }
@@ -39,5 +43,11 @@ class toDoAdapter: RecyclerView.Adapter<toDoAdapter.toDoViewHolder>() {
         toDoList.add(toDo)
         notifyDataSetChanged()
     }
+//     fun setFields(holder: toDoViewHolder, position: Int, items: List<ToDoItem>?){
+//        if(items != null){
+//            size_ = items.size
+//            holder.titlePlan.text = items.get(position).plan
+//        }
+//    }
 
 }

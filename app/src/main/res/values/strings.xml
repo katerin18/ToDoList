@@ -24,7 +24,14 @@
     <string name="btnCancel">Cancel</string>
     <string name="btnSave">Save</string>
 
+    <string name="action">Action</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="questionS">Save this plan?</string>
 
+    <string name="questionD">Delete this plan?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

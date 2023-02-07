@@ -1,16 +1,16 @@
 package com.example.todolist
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.todolist.dialogClass.DelDialog
-import com.example.todolist.dialogClass.SaveDialog
+import androidx.lifecycle.ViewModelProvider
+import com.example.todolist.ViewModel.DataViewModel
+import com.example.todolist.ViewModel.PCFactory
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,20 +20,20 @@ class PlanCardUI : AppCompatActivity() {
     lateinit var btnSave: Button
     lateinit var btnDel: Button
     lateinit var txtDate : TextView
-    lateinit var txtPlan: EditText
+
     lateinit var choImp: RadioGroup
     lateinit var radImport: RadioButton
+    lateinit var viewModel: DataViewModel
     var txtImportance: String = ""
     var txtDd : String = ""
     private var cal = Calendar.getInstance()
 
-    @SuppressLint("ResourceType", "UseSwitchCompatOrMaterialCode")
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plan_card_ui)
 
-        txtPlan = findViewById(R.id.inputPlan)
+        var txtPlan: EditText = findViewById(R.id.inputPlan)
         choImp = findViewById(R.id.choiceIm)
 
         // to get Importance
@@ -44,9 +44,29 @@ class PlanCardUI : AppCompatActivity() {
 
         // Closing window
         btnClose = findViewById(R.id.closeActivity)
-        btnClose.setOnClickListener {
-            val intent = Intent(this@PlanCardUI, MainActivity::class.java)
-            startActivity(intent)
+        btnClose.setOnClickListener {}
+
+        fun pressCancel(){}
+
+
+        fun pressSave(){
+            val dataSet = txtPlan.text.toString()+" "+txtImportance+" "+txtDd
+            Log.d("VvModel", dataSet)
+            viewModel = ViewModelProvider(this, PCFactory(application, dataSet))[DataViewModel::class.java]
+        }
+
+        fun showSaveDialog(){
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getString(R.string.action))
+                .setMessage(getString(R.string.questionS))
+                .setCancelable(false)
+                .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                    pressCancel()
+                }
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    pressSave()
+                }
+                .show()
         }
 
         // Saving plan
@@ -61,29 +81,28 @@ class PlanCardUI : AppCompatActivity() {
                 }
             }
             else {
-                val dialog = SaveDialog()
-                var args = Bundle()
-
-                Log.d("This is data 1: ", txtPlan.text.toString())
-                Log.d("This is data 2: ", radImport.text.toString())
-                Log.d("This is data 3: ", txtDd)
-
-                // packing data to Dialog
-                args = Bundle().apply {
-                    putString("plan", txtPlan.text.toString())
-                    putString("importance", radImport.text.toString())
-                    putString("deadline", txtDd)
-                }
-                dialog.arguments = args
-                dialog.show(supportFragmentManager, "saveDialog")
+                showSaveDialog()
             }
         }
 
+        fun pressDelete(){}
+
+        fun showDelDialog(){
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.action)
+                .setMessage(getString(R.string.questionD))
+                .setCancelable(false)
+                .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                    pressCancel()
+                }
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    pressDelete()
+                }
+                .show()
+        }
         // Deleting plan
         btnDel = findViewById(R.id.butDel)
         btnDel.setOnClickListener {
-            val dialog = DelDialog()
-            dialog.show(supportFragmentManager, "deleteDialog")
         }
 
         // Set the deadline
@@ -95,7 +114,6 @@ class PlanCardUI : AppCompatActivity() {
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-
 
         standardSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
