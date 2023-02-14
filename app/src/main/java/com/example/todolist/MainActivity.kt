@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity(), DataPass, toDoAdapter.Listener {
         }
     }
 
-
     override fun onChecked(plan: ToDoItem) {
         Toast.makeText(this, "plan ps ${plan.plan}", Toast.LENGTH_SHORT).show()
     }
