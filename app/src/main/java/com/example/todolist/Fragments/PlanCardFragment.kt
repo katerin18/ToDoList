@@ -5,6 +5,8 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +47,10 @@ class PlanCardFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         dataPasser = context as DataPass // говорим активити смотреть интерфейс
+    }
+
+    fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+        return keyCode == KeyEvent.KEYCODE_BACK
     }
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
@@ -112,6 +118,7 @@ class PlanCardFragment : Fragment() {
         // choosing importance
         standardSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
+
                 val dpd = DatePickerDialog(requireContext(), { view, yearr, monthOfYear, dayOfMonth ->
                     cal.set(Calendar.YEAR, yearr)
                     cal.set(Calendar.MONTH, monthOfYear)
@@ -123,9 +130,8 @@ class PlanCardFragment : Fragment() {
                     viewModel.getDate().observe(viewLifecycleOwner) {
                         txtDate.text = it
                     }
-
-
                 }, year, month, day)
+
                 dpd.setButton(
                     DialogInterface.BUTTON_NEGATIVE, "Cancel"){
                         dpd, which ->
@@ -133,6 +139,7 @@ class PlanCardFragment : Fragment() {
                         if (which == DialogInterface.BUTTON_NEGATIVE) {
                             dpd.dismiss()
                             standardSwitch.isChecked = false
+                            Log.d("vvv", standardSwitch.isChecked.toString())
                         }
                     }
                 }
@@ -140,6 +147,7 @@ class PlanCardFragment : Fragment() {
             }
             else{
                 txtDate.text=""
+                standardSwitch.isChecked = false
             }
         }
 
@@ -176,6 +184,8 @@ class PlanCardFragment : Fragment() {
             }
             .show()
     }
+
+
 
     fun showDeleteDialog(){
         MaterialAlertDialogBuilder(requireContext())

@@ -23,11 +23,8 @@ class MainActivity : AppCompatActivity(), DataPass, toDoAdapter.Listener {
     lateinit var textNumb: TextView
     val PCFragment = PlanCardFragment()
 
-    var listPlan = arrayListOf<ToDoItem>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     //  setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,7 +32,6 @@ class MainActivity : AppCompatActivity(), DataPass, toDoAdapter.Listener {
         floatBut = findViewById(R.id.btn_addPlan)
         textNumb = findViewById(R.id.numSuccess)
         floatBut.setOnClickListener { // Opening PCFragment
-
             val fragmentManager: FragmentManager = supportFragmentManager
             val transaction: FragmentTransaction = fragmentManager.beginTransaction()
             transaction.replace(R.id.mainFragment, PCFragment, "PlanCardFragment")
@@ -60,6 +56,11 @@ class MainActivity : AppCompatActivity(), DataPass, toDoAdapter.Listener {
 
     override fun onChecked(plan: ToDoItem) {
         Toast.makeText(this, "plan ps ${plan.plan}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPress(suc: Int) {
+        super.onPress(suc)
+        textNumb.text = suc.toString()
     }
 
 }
