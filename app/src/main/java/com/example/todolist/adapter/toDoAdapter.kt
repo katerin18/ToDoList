@@ -1,6 +1,7 @@
 package com.example.todolist.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
@@ -26,10 +27,15 @@ class toDoAdapter(val listener: Listener): RecyclerView.Adapter<toDoAdapter.toDo
             txtPlan.text = toDo.plan
             txtDdPlan.text = toDo.dd
 
+            when(toDo.imp){
+                "Low" -> txtDdPlan.setTextColor(Color.parseColor("#509369"))
+                "Medium" -> txtDdPlan.setTextColor(Color.BLACK)
+                "High" -> txtDdPlan.setTextColor(Color.parseColor("#E66B6B"))
+            }
+
             itemView.setOnClickListener {
                 listener.onChecked(toDo)
             }
-
         }
     }
 

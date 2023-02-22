@@ -118,7 +118,6 @@ class PlanCardFragment : Fragment() {
         // choosing importance
         standardSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
-
                 val dpd = DatePickerDialog(requireContext(), { view, yearr, monthOfYear, dayOfMonth ->
                     cal.set(Calendar.YEAR, yearr)
                     cal.set(Calendar.MONTH, monthOfYear)
@@ -131,6 +130,9 @@ class PlanCardFragment : Fragment() {
                         txtDate.text = it
                     }
                 }, year, month, day)
+
+                // set minDate = today
+                dpd.datePicker.minDate = System.currentTimeMillis()-1000
 
                 dpd.setButton(
                     DialogInterface.BUTTON_NEGATIVE, "Cancel"){
