@@ -1,10 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.todolist"
@@ -12,6 +13,11 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        // point to desired path to catalog that will storage our database scheme
+        kapt {
+            arguments {arg("room.schemaLocation", "$projectDir/schemas")}
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,6 +45,8 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
+    kapt 'androidx.room:room-compiler:2.5.0'
+    implementation 'androidx.room:room-ktx:2.5.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -49,6 +57,20 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+    // cardView, recyclerView
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.2.1"
+
+    // room
+    implementation 'androidx.room:room-runtime:2.5.0' // Библиотека "Room"
+    kapt "androidx.room:room-compiler:2.4.7" // Кодогенератор
+    implementation 'androidx.room:room-ktx:2.4.7' // Дополнительно для Kotlin Coroutines, Kotlin Flows
+    androidTestImplementation "androidx.room:room-testing:2.4.7"
+
+    // Kotlin components
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+
+
 }

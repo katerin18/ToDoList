@@ -1,6 +1,5 @@
 package com.example.todolist
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
@@ -12,6 +11,8 @@ import com.example.todolist.Fragments.PlanCardFragment
 import com.example.todolist.adapter.ToDoItem
 import com.example.todolist.adapter.toDoAdapter
 import com.example.todolist.databinding.ActivityMainBinding
+import com.example.todolist.forStorage.MainDb
+import com.example.todolist.forStorage.RowPlan
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -40,16 +41,15 @@ class MainActivity : AppCompatActivity(), DataPass, toDoAdapter.Listener {
         }
     }
 
-    override fun dataPass(data: String) {
-        val a: ArrayList<String> = data.split(';') as ArrayList<String>
-        init(a[0], a[1], a[2])
+    override fun dataPass(data: ToDoItem) {
+        init(data)
     }
 
-    private fun init(plan: String, deadline: String, imprtnc: String){
+    private fun init(planItem: ToDoItem){
         binding.apply {
             recView.layoutManager = LinearLayoutManager(this@MainActivity)
             recView.adapter = adptr
-            val todo = ToDoItem(plan, deadline, imprtnc)
+            val todo = planItem
             adptr.addToDo(todo)
         }
     }

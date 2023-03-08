@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.todolist.DataPass
 import com.example.todolist.R
 import com.example.todolist.ViewModel.DataViewModel
+import com.example.todolist.adapter.ToDoItem
+import com.example.todolist.forStorage.MainDb
+import com.example.todolist.forStorage.RowPlan
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,10 +51,6 @@ class PlanCardFragment : Fragment() {
         dataPasser = context as DataPass // говорим активити смотреть интерфейс
     }
 
-    fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
-        return keyCode == KeyEvent.KEYCODE_BACK
-    }
-
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     override fun onCreateView( // про отображение элементов
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,6 +75,12 @@ class PlanCardFragment : Fragment() {
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
+
+        if(savedInstanceState != null){
+            val item = savedInstanceState.getSerializable("Data") as ToDoItem
+            txtPlan.setText(item.plan)
+
+        }
 
         // Initialize ViewModel
         viewModel = ViewModelProvider(this).get(DataViewModel::class.java)
@@ -155,16 +159,22 @@ class PlanCardFragment : Fragment() {
 
         return view
     }
+
     private fun pressDelete(){
         //listPlan.remove
         activity?.supportFragmentManager?.popBackStack()
     }
 
     private fun pressSave(){
-        val dataSet = txtPlan.text.toString()+";"+txtImportance+";"+txtDate.text
-        dataPasser.dataPass(dataSet)
+        val db = MainDb.getDb(requireContext())
+        val itemPlan = RowPlan(null, txtPlan.text.toString(), txtImportance, txtDate.text.toString())
+
+        Thread{
+            db.getPlanDao().addPlan(itemPlan)
+        }.start()
+
+        dataPasser.dataPass(ToDoItem(itemPlan.plan_name, itemPlan.importance, itemPlan.deadline)) // directly into RecyclerView
         activity?.supportFragmentManager?.popBackStack()
-       // activity?.onBackPressed()
 
         txtPlan.text.clear()
         txtDate.text = ""
@@ -187,8 +197,6 @@ class PlanCardFragment : Fragment() {
             .show()
     }
 
-
-
     fun showDeleteDialog(){
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.action)
@@ -200,6 +208,4 @@ class PlanCardFragment : Fragment() {
             }
             .show()
     }
-
-
 }

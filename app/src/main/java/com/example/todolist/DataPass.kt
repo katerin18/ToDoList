@@ -1,5 +1,7 @@
 package com.example.todolist
 
-interface DataPass {
-    fun dataPass(data: String)
+import com.example.todolist.adapter.ToDoItem
+
+interface DataPass { // for transfer data between Activity and Fragment
+    fun dataPass(data: ToDoItem)
 }
